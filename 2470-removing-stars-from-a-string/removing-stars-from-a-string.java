@@ -1,5 +1,13 @@
 class Solution {
-    public String removeStars(String s) {
+    public String reverse(String ans){
+        int n=ans.length();
+      String result="";
+      for(int i=n-1; i>=0; i--){
+          result+=ans.charAt(i);
+      }
+      return result;
+    }
+        public String removeStars(String s) {
         int n=s.length();
         Stack<Character> st=new Stack<>();
         String ans="";
@@ -14,6 +22,7 @@ class Solution {
         while(!st.isEmpty()){
            ans+=st.pop();
         }
-        return  new StringBuilder(ans).reverse().toString();
+        // return  new StringBuilder(ans).reverse().toString();
+        return reverse(ans);
     }
 }
