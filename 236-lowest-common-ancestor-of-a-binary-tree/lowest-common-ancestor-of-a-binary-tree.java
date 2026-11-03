@@ -9,24 +9,18 @@
  */
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-
-        // Base case
-        if(root == null || root == p || root == q) {
-            return root;
-        }
-
-        // Search in left subtree
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-
-        // Search in right subtree
-        TreeNode right = lowestCommonAncestor(root.right, p, q);
-
-        // Both sides contain p and q
-        if(left != null && right != null) {
-            return root;
-        }
-
-        // Return the non-null result
-        return left != null ? left : right;
+        // code here
+        if(root==null) return null;
+        if(root==p || root==q) return root;
+        boolean pInleft=Exist(root.left, p);
+        boolean qInleft=Exist(root.left, q);
+        if(pInleft && qInleft) return lowestCommonAncestor(root.left,p,q);
+        else if(!pInleft && !qInleft) return lowestCommonAncestor(root.right,p,q);
+        else return root;
+    }
+    public boolean Exist(TreeNode root, TreeNode val){
+        if(root==null) return false;
+        if(root==val) return true;
+        return Exist(root.left, val) || Exist(root.right,val);
     }
 }
